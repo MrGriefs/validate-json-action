@@ -16,10 +16,6 @@ async function run() {
         const jsonRelativePaths = configuration.JSONS.split(',')
             // Expand all glob formulas
             .reduce((accum: string[], current) => {
-                if (current.indexOf('*') === -1) {
-                    return [...accum, current];
-                }
-
                 const globFormula = current.replace(/\\/, '/');
                 const expandedGlob = glob.sync(globFormula, {});
                 return [...accum, ...expandedGlob];
